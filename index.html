@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="robots" content="index, follow">
+
+  <title>RoboEdit — Turning Human Manipulation Videos into Scalable Robot Experience</title>
+  <meta name="description" content="RoboEdit transforms human manipulation videos into target-robot videos and structured 3D robot-hand states, supported by the automatically curated RoboEdit-14M dataset.">
+  <meta name="keywords" content="RoboEdit, human-to-robot video editing, robot learning, video generation, robot state decoder, RoboEdit-14M">
+  <meta name="author" content="Yaowei Guo, Zeng Tao, Yuxin Jiang, Yunuo Chen, Zhiyang Dou, Yuxiang Ma, Yin Yang, Demetri Terzopoulos, Ying Jiang, Chenfanfu Jiang">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience">
+  <meta property="og:description" content="From abundant human videos to target-robot interaction videos, 3D hand states, and downstream control.">
+  <meta property="og:image" content="static/images/teaser.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RoboEdit">
+  <meta name="twitter:description" content="Turning human manipulation videos into scalable robot experience.">
+  <meta name="twitter:image" content="static/images/teaser.webp">
+
+  <meta name="citation_title" content="RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience">
+  <meta name="citation_author" content="Yaowei Guo">
+  <meta name="citation_author" content="Zeng Tao">
+  <meta name="citation_author" content="Yuxin Jiang">
+  <meta name="citation_author" content="Yunuo Chen">
+  <meta name="citation_author" content="Zhiyang Dou">
+  <meta name="citation_author" content="Yuxiang Ma">
+  <meta name="citation_author" content="Yin Yang">
+  <meta name="citation_author" content="Demetri Terzopoulos">
+  <meta name="citation_author" content="Ying Jiang">
+  <meta name="citation_author" content="Chenfanfu Jiang">
+  <meta name="citation_publication_date" content="2026/08/19">
+  <meta name="citation_arxiv_id" content="2608.18948">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2608.18948">
+
+  <link rel="icon" href="static/images/ucla-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="static/images/ucla-favicon.svg">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/academic.css?v=20260828-8">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience",
+    "author": [
+      {"@type":"Person","name":"Yaowei Guo"},
+      {"@type":"Person","name":"Zeng Tao"},
+      {"@type":"Person","name":"Yuxin Jiang"},
+      {"@type":"Person","name":"Yunuo Chen"},
+      {"@type":"Person","name":"Zhiyang Dou"},
+      {"@type":"Person","name":"Yuxiang Ma"},
+      {"@type":"Person","name":"Yin Yang"},
+      {"@type":"Person","name":"Demetri Terzopoulos"},
+      {"@type":"Person","name":"Ying Jiang"},
+      {"@type":"Person","name":"Chenfanfu Jiang"}
+    ],
+    "datePublished": "2026-08-19",
+    "publisher": {"@type":"Organization","name":"arXiv"},
+    "url": "https://arxiv.org/abs/2608.18948",
+    "image": "static/images/teaser.webp",
+    "keywords": ["human-to-robot video editing", "robot learning", "3D robot state", "paired data curation"],
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <main id="main-content">
+    <header class="hero-section" id="top">
+      <div class="page-shell hero-shell">
+        <h1 class="publication-title">RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience</h1>
+        <p class="publication-venue">arXiv 2026</p>
+        <p class="publication-authors">
+          <span>Yaowei Guo<sup>1</sup></span>,
+          <span>Zeng Tao<sup>1</sup></span>,
+          <span>Yuxin Jiang<sup>1</sup></span>,
+          <span>Yunuo Chen<sup>1</sup></span>,
+          <span>Zhiyang Dou<sup>2</sup></span>,
+          <span>Yuxiang Ma<sup>2</sup></span>,
+          <span>Yin Yang<sup>3</sup></span>,
+          <span>Demetri Terzopoulos<sup>1</sup></span>,
+          <span>Ying Jiang<sup>1</sup></span>,
+          <span>Chenfanfu Jiang<sup>1</sup></span>
+        </p>
+        <p class="publication-affiliations">
+          <span><sup>1</sup>University of California, Los Angeles</span>
+          <span><sup>2</sup>Massachusetts Institute of Technology</span>
+          <span><sup>3</sup>University of Utah</span>
+        </p>
+
+        <div class="publication-links" aria-label="Project links">
+          <a class="project-button" href="https://arxiv.org/abs/2608.18948" target="_blank" rel="noopener">
+            <i class="fas fa-file-alt" aria-hidden="true"></i><span>arXiv</span>
+          </a>
+          <a class="project-button" href="https://arxiv.org/pdf/2608.18948" target="_blank" rel="noopener">
+            <i class="fas fa-file-pdf" aria-hidden="true"></i><span>PDF</span>
+          </a>
+          <a class="project-button" href="static/pdfs/roboedit_supplementary.pdf" target="_blank" rel="noopener">
+            <i class="fas fa-layer-group" aria-hidden="true"></i><span>Supplement</span>
+          </a>
+          <a class="project-button" href="static/videos/original_multimedia_viewer.html" target="_blank" rel="noopener">
+            <i class="fas fa-play-circle" aria-hidden="true"></i><span>Full multimedia</span>
+          </a>
+        </div>
+
+        <figure class="hero-figure reveal">
+          <img src="static/images/teaser.webp" alt="RoboEdit overview showing RoboEdit-Trans, RoboEdit-ADC, and the RoboEdit-14M dataset" width="4320" height="1204">
+        </figure>
+      </div>
+    </header>
+
+    <section class="section-block abstract-section" id="overview">
+      <div class="page-shell narrow-shell reveal">
+        <h2>Abstract</h2>
+        <p class="abstract-copy">
+          Collecting robot hand-object interaction data is costly and embodiment-specific, yet abundant human-object videos remain unusable for robot training. We present <strong>RoboEdit</strong>, a human-to-robot video editing suite that transforms human manipulation videos into action-consistent, physically plausible robot videos with aligned 3D hand states. To enable scalable supervision, we introduce <strong>RoboEdit-ADC</strong>, an automatic pipeline that reconstructs and retargets 3D interactions from RGB videos across embodiments. This pipeline generates <strong>RoboEdit-14M</strong>, a large-scale dataset of 174K aligned video pairs (14M frames) spanning seven robot embodiments, diverse scenes, and interaction types. The core editing engine, <strong>RoboEdit-Trans</strong>, employs cross-embodiment adaptation modules to preserve temporal coherence while adapting appearance and motion. It further integrates a 3D Robot-State Decoder to recover per-frame hand states for structured motion supervision. Experiments show that RoboEdit achieves state-of-the-art editing quality and supports downstream robot control policies in real-world manipulation tasks. Ultimately, the RoboEdit suite unlocks the vast potential of unlabeled human videos, providing scalable, high-fidelity visual and 3D motion supervision for generalizable robot learning.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-block suite-section" id="suite">
+      <div class="page-shell">
+        <div class="section-heading reveal">
+          <h2>The RoboEdit suite</h2>
+          <p>Automatic curation supplies aligned data, cross-embodiment editing generates robot videos, and state decoding recovers the motion needed for control.</p>
+        </div>
+
+        <div class="suite-flow reveal" aria-label="RoboEdit system flow">
+          <article>
+            <span class="flow-index">01</span><p class="flow-kicker">Curate</p>
+            <h3>RoboEdit-ADC</h3>
+            <p>Reconstruct and retarget human interactions to automatically produce aligned human/robot training pairs.</p>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article>
+            <span class="flow-index">02</span><p class="flow-kicker">Scale</p>
+            <h3>RoboEdit-14M</h3>
+            <p>174K paired clips and more than 14.1M frames cover seven distinct robot embodiments.</p>
+          </article>
+          <div class="flow-arrow" aria-hidden="true">→</div>
+          <article>
+            <span class="flow-index">03</span><p class="flow-kicker">Translate + decode</p>
+            <h3>RoboEdit-Trans</h3>
+            <p>Edit a human video into a robot interaction and recover its camera-space 3D hand trajectory.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block method-section" id="method">
+      <div class="page-shell">
+        <div class="section-heading reveal">
+          <h2>RoboEdit-Trans</h2>
+          <p>Task adaptation learns human-to-robot editing; LoRA and residual adapters specialize the shared editor across robot embodiments.</p>
+        </div>
+
+        <figure class="paper-figure wide-figure reveal">
+          <img src="static/images/roboedit_trans.webp" alt="RoboEdit-Trans architecture with cross-embodiment adaptation and 3D robot-state decoding" width="2734" height="642" loading="lazy">
+        </figure>
+
+        <div class="adaptation-grid reveal">
+          <article><h3>Task adaptation</h3><p>We first fine-tune the shared editor on paired human/robot clips to learn a <span class="module-highlight">common human-to-robot transformation</span>. This stage <span class="module-highlight">preserves the source scene, camera motion, and object dynamics</span> while replacing the human embodiment.</p></article>
+          <article><h3>LoRA</h3><p>We apply <span class="module-highlight">low-rank updates</span> to the editor's spatiotemporal layers, adapting <span class="module-highlight">robot appearance and motion</span> with few trainable parameters while retaining the shared editing capability.</p></article>
+          <article><h3>Residual adapter</h3><p>We introduce <span class="module-highlight">residual bottleneck adapters</span> for embodiment-specific refinement. They improve <span class="module-highlight">hand geometry, articulation, and contact-rich interaction patterns</span>, complementing the broader adaptation learned by LoRA.</p></article>
+        </div>
+
+        <div class="decoder-result reveal">
+          <div class="decoder-result-copy">
+            <h3>3D Robot-State Decoder</h3>
+            <p>We design a 3D Robot-State Decoder to recover camera-space robot motion directly from edited RGB videos. It combines framewise spatial estimation with full-sequence temporal refinement to produce consistent wrist, finger, and joint trajectories across robot embodiments. The decoded states provide structured motion guidance for downstream robot learning and control.</p>
+          </div>
+          <figure class="paper-figure">
+            <img src="static/images/decoder_predictions.webp" alt="Decoded 3D robot-hand trajectories aligned with RoboEdit-Trans video results" width="2400" height="1027" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block adc-section" id="adc">
+      <div class="page-shell">
+        <div class="section-heading reveal">
+          <h2>RoboEdit-ADC</h2>
+        </div>
+        <div class="adc-content">
+          <div class="method-copy reveal">
+            <p>RoboEdit-ADC reconstructs the 3D hand-object interaction and camera from an RGB video, retargets the motion to a target robot, and applies depth alignment and physics-guided refinement to reduce penetration, floating contacts, and motion artifacts before rendering and compositing the robot interaction.</p>
+            <ol class="method-list">
+              <li><span>01</span><div><strong>Reconstruct</strong><small>Recover the hand, object, camera, and depth.</small></div></li>
+              <li><span>02</span><div><strong>Retarget + refine</strong><small>Reduce penetration, floating contacts, and motion artifacts.</small></div></li>
+              <li><span>03</span><div><strong>Composite</strong><small>Render the robot interaction into the inpainted source scene.</small></div></li>
+            </ol>
+          </div>
+          <figure class="paper-figure adc-figure reveal">
+            <img src="static/images/roboedit_adc.webp" alt="RoboEdit-ADC automatic paired-data curation pipeline" width="801" height="547" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block dataset-section" id="dataset">
+      <div class="page-shell">
+        <div class="section-heading reveal">
+          <h2>RoboEdit-14M</h2>
+          <p>24,197 source interactions become 174,547 aligned human/robot video pairs with more than 14.1M frames, spanning diverse scenes, cameras, objects, tools, and interaction types.</p>
+        </div>
+        <figure class="dataset-figure reveal">
+          <img src="static/images/dataset_overview.webp" alt="RoboEdit-14M examples across diverse scenes and seven robot embodiments" width="4000" height="965" loading="lazy">
+        </figure>
+        <div class="embodiment-list reveal" aria-label="Supported robot embodiments">
+          <span class="emb-inspire">Inspire</span><span class="emb-xhand">XHand</span><span class="emb-ability">Ability</span><span class="emb-schunk">SCHUNK SVH</span><span class="emb-allegro">Allegro</span><span class="emb-dex3">Unitree Dex3</span><span class="emb-panda">Franka Panda</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block results-section" id="results">
+      <div class="page-shell">
+        <div class="section-heading reveal">
+          <h2>Benchmark</h2>
+        </div>
+        <div class="metric-grid reveal">
+          <article><strong>0.9282</strong><span>SSIM ↑</span><small>best</small></article>
+          <article><strong>0.0470</strong><span>LPIPS ↓</span><small>best</small></article>
+          <article><strong>0.0171</strong><span>Edit LPIPS ↓</span><small>best</small></article>
+          <article><strong>3.2511</strong><span>OpenVE overall ↑</span><small>second</small></article>
+        </div>
+
+        <div class="results-table-wrap reveal" role="region" aria-label="Quantitative comparison on the RoboEdit-Trans benchmark" tabindex="0">
+          <table class="results-table">
+            <colgroup>
+              <col style="width: 13%">
+              <col style="width: 7%">
+              <col style="width: 15%">
+              <col style="width: 8%">
+              <col style="width: 8%">
+              <col style="width: 9%">
+              <col style="width: 9%">
+              <col style="width: 7%">
+              <col style="width: 7%">
+              <col style="width: 7%">
+              <col style="width: 10%">
+            </colgroup>
+            <thead>
+              <tr><th rowspan="2">Method</th><th rowspan="2">Params</th><th rowspan="2">Condition</th><th colspan="2">Reconstruction</th><th colspan="2">Local Editing</th><th colspan="3">VBench</th><th>OpenVE</th></tr>
+              <tr><th>SSIM ↑</th><th>LPIPS ↓</th><th>Edit LPIPS ↓</th><th>BG SSIM ↑</th><th>AQ ↑</th><th>DD ↑</th><th>MS ↑</th><th>Overall ↑</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>VACE</td><td>1.3B</td><td>Single reference</td><td>0.8764</td><td>0.1070</td><td>0.0497</td><td class="best">0.9487</td><td>0.4673</td><td>0.4867</td><td>0.9952</td><td>3.2270</td></tr>
+              <tr><td>UniVideo</td><td>14B</td><td>Single reference</td><td>0.3249</td><td>0.6515</td><td>0.1043</td><td>0.4026</td><td>0.3871</td><td>0.4133</td><td>0.9890</td><td>2.2455</td></tr>
+              <tr><td>VINO</td><td>13B</td><td>Single reference</td><td>0.5564</td><td>0.3348</td><td>0.0679</td><td>0.6041</td><td>0.4488</td><td>0.4433</td><td class="best">0.9967</td><td class="best">3.2711</td></tr>
+              <tr><td>Kiwi-Edit</td><td>5B</td><td>Single reference</td><td>0.7415</td><td>0.2059</td><td>0.0627</td><td>0.8137</td><td>0.4307</td><td>0.4600</td><td>0.9950</td><td>3.2386</td></tr>
+              <tr><td>OmniWeaving</td><td>13B</td><td>Single reference</td><td>0.8107</td><td>0.1590</td><td>0.0625</td><td>0.8855</td><td>0.4478</td><td class="best">0.6900</td><td>0.9955</td><td>3.1634</td></tr>
+              <tr><td>EditCtrl</td><td>1.3B</td><td>Text instruction</td><td>0.5452</td><td>0.4295</td><td>0.0809</td><td>0.6154</td><td>0.4319</td><td>0.4933</td><td>0.9951</td><td>3.0319</td></tr>
+              <tr><td>AnyV2V</td><td>1.3B</td><td>Single reference</td><td>0.5060</td><td>0.4837</td><td>0.0978</td><td>0.5753</td><td>0.3891</td><td>0.1567</td><td>0.9756</td><td>2.9023</td></tr>
+              <tr><td>ReCo</td><td>1.3B</td><td>Single reference</td><td>0.8433</td><td>0.1366</td><td>0.0546</td><td>0.8869</td><td class="second">0.4827</td><td>0.4967</td><td>0.9939</td><td>3.1255</td></tr>
+              <tr class="section-break"><td>VACE</td><td>1.3B</td><td>Multi-keyframe</td><td class="second">0.8996</td><td class="second">0.0778</td><td class="second">0.0258</td><td class="second">0.9419</td><td>0.4768</td><td>0.5667</td><td>0.9923</td><td>3.1446</td></tr>
+              <tr><td>UniVideo</td><td>14B</td><td>Multi-keyframe</td><td>0.3364</td><td>0.6464</td><td>0.1032</td><td>0.4125</td><td>0.3836</td><td>0.4233</td><td>0.9900</td><td>2.2089</td></tr>
+              <tr><td>VINO</td><td>13B</td><td>Multi-keyframe</td><td>0.5539</td><td>0.3380</td><td>0.0541</td><td>0.5897</td><td>0.4396</td><td>0.2733</td><td>0.9944</td><td>3.1447</td></tr>
+              <tr class="ours-row"><td>RoboEdit-Trans</td><td>1.3B</td><td>Multi-keyframe</td><td class="best">0.9282</td><td class="best">0.0470</td><td class="best">0.0171</td><td class="regular">0.9188</td><td class="best">0.4832</td><td class="second">0.6300</td><td class="second">0.9956</td><td class="second">3.2511</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block gallery-section" id="gallery">
+      <div class="page-shell gallery-shell">
+        <div class="section-heading light-heading reveal">
+          <h2>Video Results</h2>
+        </div>
+
+        <div class="gallery-legend reveal" aria-label="Video column legend">
+          <span><i class="legend-dot human-dot"></i>Source human</span>
+          <span><i class="legend-dot adc-dot"></i>RoboEdit-ADC target</span>
+          <span><i class="legend-dot trans-dot"></i>RoboEdit-Trans edit</span>
+          <span><i class="legend-dot state-dot"></i>Decoded 3D state</span>
+        </div>
+
+        <div class="media-cases" id="roboedit-cases" aria-live="polite"></div>
+
+        <div class="gallery-actions">
+          <a class="ghost-link" href="static/videos/original_multimedia_viewer.html" target="_blank" rel="noopener">Open the standalone multimedia viewer <span>↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block deployment-section" id="deployment">
+      <div class="page-shell">
+        <div class="section-heading reveal">
+          <h2>Real-Robot Deployment</h2>
+        </div>
+        <div class="media-cases real-robot-cases" id="real-robot-cases"></div>
+      </div>
+    </section>
+
+    <section class="section-block citation-section" id="citation">
+      <div class="page-shell narrow-shell">
+        <div class="section-heading reveal">
+          <h2>Citation</h2>
+          <p>Please cite the arXiv preprint if you find this work useful.</p>
+        </div>
+        <div class="citation-box reveal">
+          <button class="copy-button" type="button" data-copy-target="bibtex-code" aria-label="Copy BibTeX citation">
+            <i class="fas fa-copy" aria-hidden="true"></i><span>Copy</span>
+          </button>
+          <pre id="bibtex-code"><code>@misc{guo2026roboeditturninghumanmanipulation,
+  title={RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience},
+  author={Yaowei Guo and Zeng Tao and Yuxin Jiang and Yunuo Chen and Zhiyang Dou and
+          Yuxiang Ma and Yin Yang and Demetri Terzopoulos and Ying Jiang and Chenfanfu Jiang},
+  year={2026},
+  eprint={2608.18948},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2608.18948},
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-shell footer-inner">
+      <p>This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener">Academic Project Page Template</a>, following the presentation style of <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>.</p>
+    </div>
+  </footer>
+
+  <div class="copy-toast" role="status" aria-live="polite">BibTeX copied</div>
+
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+</body>
+</html>

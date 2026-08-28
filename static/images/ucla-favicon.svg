@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">UCLA</title>
+  <defs>
+    <linearGradient id="ucla-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f80b6"/>
+      <stop offset="1" stop-color="#2774ae"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#ucla-blue)"/>
+  <text x="246" y="316" text-anchor="middle" fill="#ffffff"
+        font-family="Arial, Helvetica, sans-serif" font-size="160"
+        font-style="italic" font-weight="700" letter-spacing="-10">UCLA</text>
+</svg>

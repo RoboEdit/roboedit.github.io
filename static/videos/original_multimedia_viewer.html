@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #16191d;
+      --muted: #626a73;
+      --line: #d8dde3;
+      --soft: #f4f6f8;
+      --paper: #ffffff;
+      --accent: #b42318;
+      --accent-dark: #7a1b14;
+      --blue: #175cd3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .header-inner,
+    main {
+      width: min(1680px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      padding: 26px 0 22px;
+    }
+
+    h1 {
+      margin: 0 0 5px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      width: min(1680px, calc(100% - 40px));
+      min-height: 52px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .nav-link,
+    .global-action,
+    .section-action,
+    .case-action {
+      min-height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--paper);
+      color: var(--ink);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: 0;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0 12px;
+      text-decoration: none;
+    }
+
+    .nav-link:hover,
+    .global-action:hover,
+    .section-action:hover,
+    .case-action:hover {
+      border-color: #98a2b3;
+      background: var(--soft);
+    }
+
+    .global-action {
+      margin-left: auto;
+      padding: 0 12px;
+    }
+
+    main {
+      padding: 30px 0 54px;
+    }
+
+    section + section {
+      margin-top: 52px;
+      padding-top: 42px;
+      border-top: 2px solid var(--ink);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .section-count {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .section-meta,
+    .section-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-action {
+      padding: 0 11px;
+      color: var(--blue);
+    }
+
+    .case-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    article {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .case-header {
+      min-height: 46px;
+      padding: 7px 10px 7px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .case-title {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .case-action {
+      padding: 0 11px;
+      color: var(--blue);
+    }
+
+    .video-grid {
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .video-grid.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .video-grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .video-grid.one {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    figure {
+      min-width: 0;
+      margin: 0;
+      background: #101214;
+    }
+
+    figcaption {
+      min-height: 36px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: #101214;
+      object-fit: contain;
+    }
+
+    .accent {
+      color: var(--accent);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 20px 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .video-grid.four {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 620px) {
+      .header-inner,
+      .nav-inner,
+      main {
+        width: min(100% - 20px, 1680px);
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      .video-grid.four,
+      .video-grid.two {
+        grid-template-columns: 1fr;
+      }
+
+      .global-action {
+        margin-left: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience</h1>
+      <p class="subtitle">Automatically curated paired videos, human-to-robot video editing, decoded robot states, and real-robot deployment results</p>
+    </div>
+  </header>
+
+  <nav aria-label="Supplement sections">
+    <div class="nav-inner">
+      <a class="nav-link" href="#roboedit-results">RoboEdit Results</a>
+      <a class="nav-link" href="#real-robot-results">Real-Robot Deployment</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="roboedit-results">
+      <div class="section-heading">
+        <h2>RoboEdit Results</h2>
+        <div class="section-meta">
+          <span class="section-count">24 cases · 96 videos</span>
+          <div class="section-actions">
+            <button class="section-action" id="play-roboedit" type="button">Play all</button>
+            <button class="section-action" id="pause-roboedit" type="button">Pause all</button>
+          </div>
+        </div>
+      </div>
+      <div class="case-list" id="roboedit-cases"></div>
+    </section>
+
+    <section id="real-robot-results">
+      <div class="section-heading">
+        <h2>Real-Robot Deployment</h2>
+        <div class="section-meta">
+          <span class="section-count">8 cases · 16 videos</span>
+          <div class="section-actions">
+            <button class="section-action" id="play-real-robot" type="button">Play all</button>
+            <button class="section-action" id="pause-real-robot" type="button">Pause all</button>
+          </div>
+        </div>
+      </div>
+      <div class="case-list" id="real-robot-cases"></div>
+    </section>
+  </main>
+
+  <footer>Anonymous multimedia appendix · All media are stored locally in this archive.</footer>
+
+  <script>
+    const roboEditRoot = "RoboEdit_results";
+    const roboEditSyncedRoot = "RoboEdit_results_synced";
+    const realRobotRoot = "Real_robot_deployment_results";
+
+    function videoFigure(label, source, autoplay = false) {
+      const figure = document.createElement("figure");
+      const caption = document.createElement("figcaption");
+      const video = document.createElement("video");
+      caption.textContent = label;
+      video.controls = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.autoplay = autoplay;
+      video.loop = autoplay;
+      video.preload = "metadata";
+      video.src = source;
+      figure.append(caption, video);
+      return figure;
+    }
+
+    function syncVideos(article) {
+      const videos = [...article.querySelectorAll("video")];
+      videos.forEach((video) => {
+        video.pause();
+        video.currentTime = 0;
+        video.muted = true;
+      });
+      Promise.allSettled(videos.map((video) => video.play()));
+    }
+
+    function caseArticle(title, figures, gridClass, showSync = true) {
+      const article = document.createElement("article");
+      const header = document.createElement("div");
+      const heading = document.createElement("h3");
+      const grid = document.createElement("div");
+      header.className = "case-header";
+      heading.className = "case-title";
+      heading.textContent = title;
+      grid.className = `video-grid ${gridClass}`;
+      figures.forEach((figure) => grid.appendChild(figure));
+      header.appendChild(heading);
+      if (showSync) {
+        const action = document.createElement("button");
+        action.className = "case-action";
+        action.type = "button";
+        action.textContent = "Play together";
+        action.title = `Play all videos in ${title} from the beginning`;
+        action.addEventListener("click", () => syncVideos(article));
+        header.appendChild(action);
+      }
+      article.append(header, grid);
+      return article;
+    }
+
+    const roboEditContainer = document.getElementById("roboedit-cases");
+    const roboEditCaseIds = Array.from({ length: 24 }, (_, index) => index + 1);
+    roboEditCaseIds.forEach((caseIndex, displayIndex) => {
+      const figures = [
+        videoFigure("Source Human", `${roboEditSyncedRoot}/source_human_videos/${caseIndex}.mp4`, true),
+        videoFigure("RoboEdit-ADC (Paired Robot Video)", `${roboEditSyncedRoot}/RoboEdit-ADC_results/${caseIndex}.mp4`, true),
+        videoFigure("RoboEdit-Trans (Edited Video)", `${roboEditRoot}/RoboEdit-Trans_results/${caseIndex}_edited_video.mp4`, true),
+        videoFigure("RoboEdit-Trans (Decoded 3D Robot State)", `${roboEditRoot}/RoboEdit-Trans_results/${caseIndex}_decoded_robot_state.mp4`, true)
+      ];
+      roboEditContainer.appendChild(
+        caseArticle(`RoboEdit Case ${String(displayIndex + 1).padStart(2, "0")}`, figures, "four")
+      );
+    });
+
+    const realRobotContainer = document.getElementById("real-robot-cases");
+    [
+      ["Panda Gripper", "panda_gripper"],
+      ["XHand", "xhand"]
+    ].forEach(([displayName, directory]) => {
+      for (let caseIndex = 1; caseIndex <= 4; caseIndex += 1) {
+        const figures = [
+          videoFigure(
+            "Human Demonstration (Task Reference)",
+            `${realRobotRoot}/${directory}/${caseIndex}_human_demonstration_reference.mp4`,
+            true
+          ),
+          videoFigure(
+            "Real-Robot Deployment",
+            `${realRobotRoot}/${directory}/${caseIndex}_real_robot_video.mp4`,
+            true
+          )
+        ];
+        realRobotContainer.appendChild(
+          caseArticle(`${displayName} · Case ${caseIndex}`, figures, "two")
+        );
+      }
+    });
+
+    document.getElementById("play-roboedit").addEventListener("click", () => {
+      document.querySelectorAll("#roboedit-cases video").forEach((video) => {
+        video.muted = true;
+        video.play();
+      });
+    });
+
+    document.getElementById("pause-roboedit").addEventListener("click", () => {
+      document.querySelectorAll("#roboedit-cases video").forEach((video) => video.pause());
+    });
+
+    document.getElementById("play-real-robot").addEventListener("click", () => {
+      document.querySelectorAll("#real-robot-cases video").forEach((video) => {
+        video.muted = true;
+        video.play();
+      });
+    });
+
+    document.getElementById("pause-real-robot").addEventListener("click", () => {
+      document.querySelectorAll("#real-robot-cases video").forEach((video) => video.pause());
+    });
+  </script>
+</body>
+</html>
