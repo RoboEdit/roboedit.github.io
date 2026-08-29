@@ -201,42 +201,47 @@
 
   const videoRoot = "static/videos";
   const datasetWall = document.getElementById("dataset-video-wall");
-  const datasetPageStatus = document.getElementById("dataset-page-status");
-  const datasetPages = [
-    [1, 4, 7, 10, 13, 16, 19, 22],
-    [2, 5, 8, 11, 14, 17, 20, 23],
-    [3, 6, 9, 12, 15, 18, 21, 24]
+  const datasetCaseOrder = [
+    1, 7, 13, 19, 2,
+    8, 3, 9, 15, 21,
+    4, 10, 14, 16, 22,
+    5, 11, 17, 23, 6,
+    12, 18, 24, 20, 14
   ];
-  let datasetPage = 0;
 
   const renderDatasetWall = () => {
     if (!datasetWall) return;
-    datasetWall.querySelectorAll("video").forEach((video) => video.pause());
     datasetWall.replaceChildren();
-    datasetPages[datasetPage].forEach((caseIndex) => {
-      datasetWall.append(
-        createFeatureVideo(
-          `Human source video, RoboEdit case ${caseIndex}`,
-          `${videoRoot}/RoboEdit_results_synced/source_human_videos/${caseIndex}.mp4`
-        ),
-        createFeatureVideo(
-          `Paired robot video, RoboEdit case ${caseIndex}`,
-          `${videoRoot}/RoboEdit_results_synced/RoboEdit-ADC_results/${caseIndex}.mp4`
-        )
+    datasetCaseOrder.forEach((caseIndex, tileIndex) => {
+      const video = createFeatureVideo(
+        `RoboEdit-14M robot interaction example ${caseIndex}`,
+        `${videoRoot}/RoboEdit_results_synced/RoboEdit-ADC_results/${caseIndex}.mp4`
       );
+      video.classList.add("dataset-tile");
+      video.addEventListener("loadedmetadata", () => {
+        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+        video.currentTime = (tileIndex * 0.31) % video.duration;
+      }, { once: true });
+      datasetWall.append(video);
     });
-    if (datasetPageStatus) datasetPageStatus.textContent = `${datasetPage + 1} / ${datasetPages.length}`;
   };
 
-  document.querySelector(".dataset-wall-prev")?.addEventListener("click", () => {
-    datasetPage = (datasetPage - 1 + datasetPages.length) % datasetPages.length;
-    renderDatasetWall();
-  });
-  document.querySelector(".dataset-wall-next")?.addEventListener("click", () => {
-    datasetPage = (datasetPage + 1) % datasetPages.length;
-    renderDatasetWall();
-  });
   renderDatasetWall();
+
+  if (datasetWall) {
+    const datasetCarousel = datasetWall.closest(".dataset-video-carousel");
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+      datasetWall.classList.add("is-zooming");
+    } else {
+      const datasetAnimationObserver = new IntersectionObserver((entries, observer) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting) return;
+        datasetWall.classList.add("is-zooming");
+        observer.disconnect();
+      }, { threshold: 0.32 });
+      datasetAnimationObserver.observe(datasetCarousel || datasetWall);
+    }
+  }
 
   const roboCases = document.getElementById("roboedit-cases");
   let renderedRoboCases = 0;
