@@ -215,7 +215,7 @@
     datasetCaseOrder.forEach((caseIndex, tileIndex) => {
       const video = createFeatureVideo(
         `RoboEdit-14M robot interaction example ${caseIndex}`,
-        `${videoRoot}/RoboEdit_results_synced/RoboEdit-ADC_results/${caseIndex}.mp4`
+        `${videoRoot}/RoboEdit-14M-colored/${caseIndex}.mp4`
       );
       video.classList.add("dataset-tile");
       video.addEventListener("loadedmetadata", () => {
