@@ -310,29 +310,6 @@ strong { color: inherit; }
   object-fit: cover;
   background: transparent;
 }
-.embodiment-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 18px;
-}
-.embodiment-list span {
-  padding: 6px 11px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: #fff;
-  font-size: .83rem;
-  font-weight: 700;
-}
-.embodiment-list .emb-inspire { background: #168d82; border-color: #0f746b; }
-.embodiment-list .emb-xhand { background: #8f2d4f; border-color: #75223f; }
-.embodiment-list .emb-ability { background: #5665a7; border-color: #46548e; }
-.embodiment-list .emb-schunk { background: #70468f; border-color: #5b3677; }
-.embodiment-list .emb-allegro { color: #262014; background: #d3a32f; border-color: #b8891e; }
-.embodiment-list .emb-dex3 { background: #c33b7c; border-color: #a82d68; }
-.embodiment-list .emb-panda { background: #557d35; border-color: #416728; }
-
 .decoder-pipeline {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
