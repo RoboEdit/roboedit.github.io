@@ -16,7 +16,7 @@ Then open <http://127.0.0.1:8001/>.
 
 - Main manuscript: the public arXiv preprint ([arXiv:2608.18948](https://arxiv.org/abs/2608.18948)) and the matching local TeX/PDF source.
 - Supplement: final supplementary PDF and TeX.
-- Figures: the page keeps five high-level visuals—the teaser, RoboEdit-Trans, decoder result, RoboEdit-ADC, and RoboEdit-14M overview figures. Detailed comparisons and ablations remain in the paper.
+- Figures and video walls: the teaser, RoboEdit-Trans, and RoboEdit-ADC remain paper figures. RoboEdit-14M uses a three-page paired-video wall, while the decoder method block presents six looping decoded-state videos in a 2×3 layout. Detailed comparisons and ablations remain in the paper.
 - Videos: the final submission bundle. The page contains 24 RoboEdit cases × 4 streams and 8 real-robot cases × 2 streams, for 112 MP4 files in total.
 - The public-facing `3D Robot-State Decoder` description follows the paper-final Formal353 architecture: edited-RGB-only, shared ResNet-34 FPN, robot-specific spatial heads, SQPnP wrist recovery, full-81-frame temporal Transformer, and forward kinematics. V169 is not presented as the paper decoder.
 

@@ -114,6 +114,21 @@
     if (videoObserver) videoObserver.observe(video);
   };
 
+  document.querySelectorAll("video.feature-video").forEach(registerVideo);
+
+  const createFeatureVideo = (label, source) => {
+    const video = document.createElement("video");
+    video.className = "feature-video";
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    video.src = source;
+    video.setAttribute("aria-label", label);
+    registerVideo(video);
+    return video;
+  };
+
   const createVideoCell = (label, source) => {
     const figure = document.createElement("figure");
     figure.className = "video-cell";
@@ -185,6 +200,44 @@
   };
 
   const videoRoot = "static/videos";
+  const datasetWall = document.getElementById("dataset-video-wall");
+  const datasetPageStatus = document.getElementById("dataset-page-status");
+  const datasetPages = [
+    [1, 4, 7, 10, 13, 16, 19, 22],
+    [2, 5, 8, 11, 14, 17, 20, 23],
+    [3, 6, 9, 12, 15, 18, 21, 24]
+  ];
+  let datasetPage = 0;
+
+  const renderDatasetWall = () => {
+    if (!datasetWall) return;
+    datasetWall.querySelectorAll("video").forEach((video) => video.pause());
+    datasetWall.replaceChildren();
+    datasetPages[datasetPage].forEach((caseIndex) => {
+      datasetWall.append(
+        createFeatureVideo(
+          `Human source video, RoboEdit case ${caseIndex}`,
+          `${videoRoot}/RoboEdit_results_synced/source_human_videos/${caseIndex}.mp4`
+        ),
+        createFeatureVideo(
+          `Paired robot video, RoboEdit case ${caseIndex}`,
+          `${videoRoot}/RoboEdit_results_synced/RoboEdit-ADC_results/${caseIndex}.mp4`
+        )
+      );
+    });
+    if (datasetPageStatus) datasetPageStatus.textContent = `${datasetPage + 1} / ${datasetPages.length}`;
+  };
+
+  document.querySelector(".dataset-wall-prev")?.addEventListener("click", () => {
+    datasetPage = (datasetPage - 1 + datasetPages.length) % datasetPages.length;
+    renderDatasetWall();
+  });
+  document.querySelector(".dataset-wall-next")?.addEventListener("click", () => {
+    datasetPage = (datasetPage + 1) % datasetPages.length;
+    renderDatasetWall();
+  });
+  renderDatasetWall();
+
   const roboCases = document.getElementById("roboedit-cases");
   let renderedRoboCases = 0;
 

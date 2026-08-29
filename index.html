@@ -38,7 +38,7 @@
   <link rel="icon" href="static/images/ucla-favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="static/images/ucla-favicon.svg">
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/academic.css?v=20260828-8">
+  <link rel="stylesheet" href="static/css/academic.css?v=20260829-1">
 
   <script type="application/ld+json">
   {
@@ -169,13 +169,20 @@
           <article><h3>Residual adapter</h3><p>We introduce <span class="module-highlight">residual bottleneck adapters</span> for embodiment-specific refinement. They improve <span class="module-highlight">hand geometry, articulation, and contact-rich interaction patterns</span>, complementing the broader adaptation learned by LoRA.</p></article>
         </div>
 
-        <div class="decoder-result reveal">
+        <div class="decoder-result reveal" id="decoder">
           <div class="decoder-result-copy">
             <h3>3D Robot-State Decoder</h3>
             <p>We design a 3D Robot-State Decoder to recover camera-space robot motion directly from edited RGB videos. It combines framewise spatial estimation with full-sequence temporal refinement to produce consistent wrist, finger, and joint trajectories across robot embodiments. The decoded states provide structured motion guidance for downstream robot learning and control.</p>
           </div>
-          <figure class="paper-figure">
-            <img src="static/images/decoder_predictions.webp" alt="Decoded 3D robot-hand trajectories aligned with RoboEdit-Trans video results" width="2400" height="1027" loading="lazy">
+          <figure class="paper-figure decoder-video-figure" aria-label="Six decoded 3D robot-state video examples">
+            <div class="decoder-video-grid">
+              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 1" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/1_decoded_robot_state.mp4"></video>
+              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 2" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/2_decoded_robot_state.mp4"></video>
+              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 3" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/3_decoded_robot_state.mp4"></video>
+              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 4" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/4_decoded_robot_state.mp4"></video>
+              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 5" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/8_decoded_robot_state.mp4"></video>
+              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 6" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/19_decoded_robot_state.mp4"></video>
+            </div>
           </figure>
         </div>
       </div>
@@ -208,9 +215,12 @@
           <h2>RoboEdit-14M</h2>
           <p>24,197 source interactions become 174,547 aligned human/robot video pairs with more than 14.1M frames, spanning diverse scenes, cameras, objects, tools, and interaction types.</p>
         </div>
-        <figure class="dataset-figure reveal">
-          <img src="static/images/dataset_overview.webp" alt="RoboEdit-14M examples across diverse scenes and seven robot embodiments" width="4000" height="965" loading="lazy">
-        </figure>
+        <div class="dataset-video-carousel reveal" aria-label="RoboEdit-14M paired video examples">
+          <div class="dataset-video-wall" id="dataset-video-wall"></div>
+          <button class="dataset-wall-nav dataset-wall-prev" type="button" aria-label="Show previous RoboEdit-14M video examples">‹</button>
+          <button class="dataset-wall-nav dataset-wall-next" type="button" aria-label="Show next RoboEdit-14M video examples">›</button>
+          <span class="dataset-page-status" id="dataset-page-status" aria-live="polite"></span>
+        </div>
         <div class="embodiment-list reveal" aria-label="Supported robot embodiments">
           <span class="emb-inspire">Inspire</span><span class="emb-xhand">XHand</span><span class="emb-ability">Ability</span><span class="emb-schunk">SCHUNK SVH</span><span class="emb-allegro">Allegro</span><span class="emb-dex3">Unitree Dex3</span><span class="emb-panda">Franka Panda</span>
         </div>
@@ -331,6 +341,6 @@
   <div class="copy-toast" role="status" aria-live="polite">BibTeX copied</div>
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/index.js?v=20260829-1"></script>
+  <script defer src="static/js/index.js?v=20260829-2"></script>
 </body>
 </html>

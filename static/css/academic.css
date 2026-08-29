@@ -258,6 +258,23 @@ strong { color: inherit; }
 }
 .decoder-result-copy p { margin: 0; color: var(--muted); font-size: .98rem; }
 .decoder-result .paper-figure { margin: 0; }
+.decoder-video-figure {
+  overflow: hidden;
+  background: #050505;
+  border-radius: 8px;
+}
+.decoder-video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px;
+  padding: 3px;
+}
+.decoder-video-grid video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #000;
+}
 
 .adc-content {
   display: grid;
@@ -277,6 +294,62 @@ strong { color: inherit; }
 .light-heading p { color: var(--muted); }
 .dataset-figure { margin: 0; }
 .dataset-figure img { width: 100%; height: auto; }
+.dataset-video-carousel {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  padding: 3px;
+  background: #050505;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(17, 24, 39, .12);
+}
+.dataset-video-wall {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3px;
+  background: #050505;
+}
+.dataset-video-wall video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #000;
+}
+.dataset-wall-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0 0 4px;
+  border: 1px solid rgba(17, 24, 39, .08);
+  border-radius: 50%;
+  color: #111;
+  background: rgba(255, 255, 255, .95);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .22);
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.dataset-wall-nav:hover { background: #fff; transform: translateY(-50%) scale(1.04); }
+.dataset-wall-prev { left: 12px; }
+.dataset-wall-next { right: 12px; }
+.dataset-page-status {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  z-index: 2;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(0, 0, 0, .55);
+  font-size: .7rem;
+  font-weight: 600;
+}
 .embodiment-list {
   display: flex;
   flex-wrap: wrap;
@@ -475,6 +548,9 @@ strong { color: inherit; }
   .section-block { padding: 42px 0; }
   .abstract-copy { font-size: 1rem; text-align: left; }
   .adc-content, .ablation-panel { grid-template-columns: 1fr; gap: 24px; }
+  .decoder-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dataset-video-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dataset-wall-nav { width: 40px; height: 40px; font-size: 1.7rem; }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
   .deployment-grid, .real-robot-cases { grid-template-columns: 1fr; }
   .citation-box { padding: 18px 14px; }
