@@ -142,7 +142,7 @@
     Promise.allSettled(videos.map((video) => video.play()));
   };
 
-  const createMediaCase = (title, videos) => {
+  const createMediaCase = (title, videos, { synchronize = true } = {}) => {
     const article = document.createElement("article");
     article.className = "media-case";
     const header = document.createElement("header");
@@ -161,24 +161,26 @@
     header.append(heading, button);
     article.append(header, grid);
 
-    const media = [...article.querySelectorAll("video")];
-    const [master, ...followers] = media;
-    const syncToMaster = () => {
-      if (!master || master.readyState < 1) return;
-      followers.forEach((video) => {
-        if (video.readyState < 1) return;
-        if (Math.abs(video.currentTime - master.currentTime) > 0.06) {
-          video.currentTime = Math.min(master.currentTime, Math.max(0, video.duration - 0.01));
-        }
+    if (synchronize) {
+      const media = [...article.querySelectorAll("video")];
+      const [master, ...followers] = media;
+      const syncToMaster = () => {
+        if (!master || master.readyState < 1) return;
+        followers.forEach((video) => {
+          if (video.readyState < 1) return;
+          if (Math.abs(video.currentTime - master.currentTime) > 0.06) {
+            video.currentTime = Math.min(master.currentTime, Math.max(0, video.duration - 0.01));
+          }
+        });
+      };
+      master?.addEventListener("play", () => {
+        syncToMaster();
+        followers.forEach((video) => video.play().catch(() => {}));
       });
-    };
-    master?.addEventListener("play", () => {
-      syncToMaster();
-      followers.forEach((video) => video.play().catch(() => {}));
-    });
-    master?.addEventListener("pause", () => followers.forEach((video) => video.pause()));
-    master?.addEventListener("seeking", syncToMaster);
-    master?.addEventListener("timeupdate", syncToMaster);
+      master?.addEventListener("pause", () => followers.forEach((video) => video.pause()));
+      master?.addEventListener("seeking", syncToMaster);
+      master?.addEventListener("timeupdate", syncToMaster);
+    }
     return article;
   };
 
@@ -216,7 +218,7 @@
         fragment.appendChild(createMediaCase(`${displayName} · case ${index}`, [
           ["Human task reference", `${videoRoot}/Real_robot_deployment_results/${directory}/${index}_human_demonstration_reference.mp4`],
           ["Real-robot deployment", `${videoRoot}/Real_robot_deployment_results/${directory}/${index}_real_robot_video.mp4`]
-        ]));
+        ], { synchronize: false }));
       }
     });
     realRobotCases.appendChild(fragment);

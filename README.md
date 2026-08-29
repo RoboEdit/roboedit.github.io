@@ -26,7 +26,7 @@ The title, author list, submission date, paper links, metadata, and BibTeX entry
 
 ## Media behavior
 
-All 24 four-stream RoboEdit comparisons and all eight real-robot cases load by default, for 112 videos on the main page. The 24 editing cases use synchronized source/ADC copies under `static/videos/RoboEdit_results_synced`: every stream is exactly 81 frames at 24 FPS (3.37 seconds). Videos play muted when visible and pause off-screen. The standalone 112-video viewer is preserved at `static/videos/original_multimedia_viewer.html` and uses the same synchronized media.
+All 24 four-stream RoboEdit comparisons and all eight real-robot cases load by default, for 112 videos on the main page. The 24 editing cases use synchronized source/ADC copies under `static/videos/RoboEdit_results_synced`: every stream is exactly 81 frames at 24 FPS (3.37 seconds). The real-robot task references and rollouts intentionally keep their independent durations; “Play together” starts both at zero without forcing the longer rollout to follow the short reference timeline. Videos play muted when visible and pause off-screen. The standalone 112-video viewer is preserved at `static/videos/original_multimedia_viewer.html` and uses the same media.
 
 ## Credits
 
