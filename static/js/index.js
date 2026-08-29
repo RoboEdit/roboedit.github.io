@@ -200,48 +200,6 @@
   };
 
   const videoRoot = "static/videos";
-  const datasetWall = document.getElementById("dataset-video-wall");
-  const datasetCaseOrder = [
-    1, 7, 13, 19, 2,
-    8, 3, 9, 15, 21,
-    4, 10, 14, 16, 22,
-    5, 11, 17, 23, 6,
-    12, 18, 24, 20, 14
-  ];
-
-  const renderDatasetWall = () => {
-    if (!datasetWall) return;
-    datasetWall.replaceChildren();
-    datasetCaseOrder.forEach((caseIndex, tileIndex) => {
-      const video = createFeatureVideo(
-        `RoboEdit-14M robot interaction example ${caseIndex}`,
-        `${videoRoot}/RoboEdit-14M-colored/${caseIndex}.mp4`
-      );
-      video.classList.add("dataset-tile");
-      video.addEventListener("loadedmetadata", () => {
-        if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-        video.currentTime = (tileIndex * 0.31) % video.duration;
-      }, { once: true });
-      datasetWall.append(video);
-    });
-  };
-
-  renderDatasetWall();
-
-  if (datasetWall) {
-    const datasetCarousel = datasetWall.closest(".dataset-video-carousel");
-    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-      datasetWall.classList.add("is-zooming");
-    } else {
-      const datasetAnimationObserver = new IntersectionObserver((entries, observer) => {
-        const entry = entries[0];
-        if (!entry?.isIntersecting) return;
-        datasetWall.classList.add("is-zooming");
-        observer.disconnect();
-      }, { threshold: 0.32 });
-      datasetAnimationObserver.observe(datasetCarousel || datasetWall);
-    }
-  }
 
   const roboCases = document.getElementById("roboedit-cases");
   let renderedRoboCases = 0;

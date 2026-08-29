@@ -264,21 +264,13 @@ strong { color: inherit; }
   border: 0;
   border-radius: 0;
 }
-.decoder-video-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.decoder-video-grid video {
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  margin: -1px;
-  aspect-ratio: 16 / 9;
+.decoder-composite-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 3;
   object-fit: cover;
   background: transparent;
-  transform: scale(1.025);
 }
 
 .adc-content {
@@ -309,37 +301,14 @@ strong { color: inherit; }
   border-radius: 10px;
   box-shadow: 0 12px 30px rgba(17, 24, 39, .12);
 }
-.dataset-video-wall {
+.dataset-composite-video {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-template-rows: repeat(5, minmax(0, 1fr));
-  gap: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  background: transparent;
-  transform: scale(5);
-  transform-origin: center;
-  will-change: transform;
-}
-.dataset-video-wall.is-zooming {
-  animation: dataset-wall-zoom-out 13s cubic-bezier(.2, .72, .18, 1) forwards;
-}
-.dataset-video-wall video {
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  margin: -1px;
   object-fit: cover;
   background: transparent;
-  transform: scale(1.035);
-}
-
-@keyframes dataset-wall-zoom-out {
-  0%, 14% { transform: scale(5); }
-  42% { transform: scale(2.75); }
-  72% { transform: scale(1.65); }
-  100% { transform: scale(1); }
 }
 .embodiment-list {
   display: flex;
@@ -539,15 +508,7 @@ strong { color: inherit; }
   .section-block { padding: 42px 0; }
   .abstract-copy { font-size: 1rem; text-align: left; }
   .adc-content, .ablation-panel { grid-template-columns: 1fr; gap: 24px; }
-  .decoder-video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .dataset-video-carousel { aspect-ratio: 4 / 5; }
-  .dataset-video-wall {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    grid-template-rows: repeat(5, minmax(0, 1fr));
-    transform: none;
-    transform-origin: center;
-  }
-  .dataset-video-wall.is-zooming { animation: none; }
+  .dataset-video-carousel { aspect-ratio: 16 / 9; }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
   .deployment-grid, .real-robot-cases { grid-template-columns: 1fr; }
   .citation-box { padding: 18px 14px; }
@@ -565,5 +526,4 @@ strong { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
-  .dataset-video-wall, .dataset-video-wall.is-zooming { animation: none !important; transform: none !important; }
 }

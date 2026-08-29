@@ -175,14 +175,7 @@
             <p>We design a 3D Robot-State Decoder to recover camera-space robot motion directly from edited RGB videos. It combines framewise spatial estimation with full-sequence temporal refinement to produce consistent wrist, finger, and joint trajectories across robot embodiments. The decoded states provide structured motion guidance for downstream robot learning and control.</p>
           </div>
           <figure class="paper-figure decoder-video-figure" aria-label="Six decoded 3D robot-state video examples">
-            <div class="decoder-video-grid">
-              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 1" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/1_decoded_robot_state.mp4"></video>
-              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 2" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/2_decoded_robot_state.mp4"></video>
-              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 3" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/3_decoded_robot_state.mp4"></video>
-              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 4" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/4_decoded_robot_state.mp4"></video>
-              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 5" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/14_decoded_robot_state.mp4"></video>
-              <video class="feature-video" muted loop autoplay playsinline preload="metadata" aria-label="Decoded 3D robot state example 6" src="static/videos/RoboEdit_results/RoboEdit-Trans_results/19_decoded_robot_state.mp4"></video>
-            </div>
+            <video class="feature-video decoder-composite-video" muted loop autoplay playsinline preload="metadata" aria-label="A seamless two-by-three video wall of decoded 3D robot states" src="static/videos/decoder-wall.mp4"></video>
           </figure>
         </div>
       </div>
@@ -215,8 +208,8 @@
           <h2>RoboEdit-14M</h2>
           <p>24,197 source interactions become 174,547 aligned human/robot video pairs with more than 14.1M frames, spanning diverse scenes, cameras, objects, tools, and interaction types.</p>
         </div>
-        <div class="dataset-video-carousel reveal" aria-label="RoboEdit-14M robot interaction videos expanding from one example into a dense video wall">
-          <div class="dataset-video-wall" id="dataset-video-wall"></div>
+        <div class="dataset-video-carousel reveal" aria-label="RoboEdit-14M robot interaction videos continuously expanding from a two-by-two view into an eight-by-eight video wall">
+          <video class="feature-video dataset-composite-video" muted loop autoplay playsinline preload="metadata" aria-label="RoboEdit-14M continuous two-by-two to eight-by-eight robot interaction video wall" src="static/videos/roboedit-14m-wall.mp4"></video>
         </div>
         <div class="embodiment-list reveal" aria-label="Supported robot embodiments">
           <span class="emb-inspire">Inspire</span><span class="emb-xhand">XHand</span><span class="emb-ability">Ability</span><span class="emb-schunk">SCHUNK SVH</span><span class="emb-allegro">Allegro</span><span class="emb-dex3">Unitree Dex3</span><span class="emb-panda">Franka Panda</span>
