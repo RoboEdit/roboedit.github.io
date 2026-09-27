@@ -275,16 +275,17 @@ strong { color: inherit; }
 
 .adc-content {
   display: grid;
-  grid-template-columns: .9fr 1.1fr;
-  align-items: center;
-  gap: 42px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
 }
 .method-list { margin: 20px 0 0; padding: 0; list-style: none; }
 .method-list li { display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 10px 0; border-top: 1px solid var(--border); }
 .method-list li > span { color: var(--muted); font-size: .78rem; }
 .method-list strong, .method-list small { display: block; }
 .method-list small { color: var(--muted); font-size: .86rem; }
-.adc-figure { width: min(100%, 520px); margin: 0 auto; }
+.adc-figure { width: 100%; margin: 0; }
+.adc-figure a { display: block; }
+.adc-content .method-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 
 .dataset-section, .gallery-section { color: var(--text); background: #fff; }
 .light-heading h2 { color: #111; }
@@ -444,7 +445,7 @@ strong { color: inherit; }
 .real-robot-heading h3 { margin: 4px 0 5px; color: #111; font-size: 1.45rem; font-weight: 600; }
 .real-robot-heading p { margin: 0; color: var(--muted); font-size: .9rem; }
 .real-robot-cases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.real-robot-cases .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.real-robot-cases .video-grid { grid-template-columns: minmax(0, 1fr); }
 .more-results-note { margin: 22px 0 0; font-size: .9rem; text-align: center; }
 
 .citation-section { background: var(--soft); }
@@ -485,6 +486,7 @@ strong { color: inherit; }
   .section-block { padding: 42px 0; }
   .abstract-copy { font-size: 1rem; text-align: left; }
   .adc-content, .ablation-panel { grid-template-columns: 1fr; gap: 24px; }
+  .adc-content .method-list { grid-template-columns: 1fr; gap: 0; }
   .dataset-video-carousel { aspect-ratio: 16 / 9; }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
   .deployment-grid, .real-robot-cases { grid-template-columns: 1fr; }
@@ -495,7 +497,7 @@ strong { color: inherit; }
 @media (max-width: 520px) {
   .publication-title { font-size: 1.72rem; }
   .publication-links { gap: 7px; }
-  .video-grid, .real-robot-cases .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .metric-grid, .deployment-stats { grid-template-columns: 1fr; }
   .gallery-shell { width: min(100% - 18px, 1320px); }
 }

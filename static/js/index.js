@@ -164,16 +164,19 @@
     header.className = "media-case-header";
     const heading = document.createElement("h3");
     heading.textContent = title;
-    const button = document.createElement("button");
-    button.className = "case-sync";
-    button.type = "button";
-    button.textContent = "Play together";
-    button.setAttribute("aria-label", `Play every video in ${title} together`);
-    button.addEventListener("click", () => playTogether(article));
+    header.append(heading);
+    if (videos.length > 1) {
+      const button = document.createElement("button");
+      button.className = "case-sync";
+      button.type = "button";
+      button.textContent = "Play together";
+      button.setAttribute("aria-label", `Play every video in ${title} together`);
+      button.addEventListener("click", () => playTogether(article));
+      header.append(button);
+    }
     const grid = document.createElement("div");
     grid.className = "video-grid";
     videos.forEach(([label, source]) => grid.appendChild(createVideoCell(label, source)));
-    header.append(heading, button);
     article.append(header, grid);
 
     if (synchronize) {
@@ -232,7 +235,6 @@
     ].forEach(([displayName, directory]) => {
       for (let index = 1; index <= 4; index += 1) {
         fragment.appendChild(createMediaCase(`${displayName} · case ${index}`, [
-          ["Human task reference", `${videoRoot}/Real_robot_deployment_results/${directory}/${index}_human_demonstration_reference.mp4`],
           ["Real-robot deployment", `${videoRoot}/Real_robot_deployment_results/${directory}/${index}_real_robot_video.mp4`]
         ], { synchronize: false }));
       }

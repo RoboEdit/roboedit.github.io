@@ -38,7 +38,7 @@
   <link rel="icon" href="static/images/ucla-favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="static/images/ucla-favicon.svg">
   <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/academic.css?v=20260829-2">
+  <link rel="stylesheet" href="static/css/academic.css?v=20260927-1">
 
   <script type="application/ld+json">
   {
@@ -187,6 +187,11 @@
           <h2>RoboEdit-ADC</h2>
         </div>
         <div class="adc-content">
+          <figure class="paper-figure adc-figure reveal">
+            <a href="static/images/roboedit_adc_iclr.webp" target="_blank" rel="noopener" aria-label="Open the RoboEdit-ADC pipeline figure at full resolution">
+              <img src="static/images/roboedit_adc_iclr.webp" alt="RoboEdit-ADC pipeline: reconstruct the human interaction, retarget with depth alignment and physics refinement, then render and composite the robot video" width="3200" height="1020" loading="lazy">
+            </a>
+          </figure>
           <div class="method-copy reveal">
             <p>RoboEdit-ADC reconstructs the 3D hand-object interaction and camera from an RGB video, retargets the motion to a target robot, and applies depth alignment and physics-guided refinement to reduce penetration, floating contacts, and motion artifacts before rendering and compositing the robot interaction.</p>
             <ol class="method-list">
@@ -195,9 +200,6 @@
               <li><span>03</span><div><strong>Composite</strong><small>Render the robot interaction into the inpainted source scene.</small></div></li>
             </ol>
           </div>
-          <figure class="paper-figure adc-figure reveal">
-            <img src="static/images/roboedit_adc.webp" alt="RoboEdit-ADC automatic paired-data curation pipeline" width="801" height="547" loading="lazy">
-          </figure>
         </div>
       </div>
     </section>
@@ -328,6 +330,6 @@
   <div class="copy-toast" role="status" aria-live="polite">BibTeX copied</div>
 
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/index.js?v=20260829-3"></script>
+  <script defer src="static/js/index.js?v=20260927-1"></script>
 </body>
 </html>
