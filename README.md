@@ -16,7 +16,7 @@ Then open <http://127.0.0.1:8001/>.
 
 - Main manuscript: the public arXiv preprint ([arXiv:2608.18948](https://arxiv.org/abs/2608.18948)) and the matching local TeX/PDF source.
 - Supplement: final supplementary PDF and TeX.
-- Figures and video walls: the teaser and RoboEdit-Trans remain paper figures. RoboEdit-ADC uses the revised landscape figure from the ICLR manuscript (`Figures/pipeline/RoboEdit-ADC_ICLR.pdf`, exported as a 3200×1020 WebP), with the figure above its explanation. RoboEdit-14M uses a three-page paired-video wall, while the decoder method block presents six looping decoded-state videos in a 2×3 layout. Detailed comparisons and ablations remain in the paper.
+- Figures and video walls: the teaser and RoboEdit-Trans remain paper figures. RoboEdit-ADC uses the revised landscape figure from the ICLR manuscript (`Figures/pipeline/RoboEdit-ADC_ICLR.pdf`, exported as a 3200×1020 WebP), with text on the left and the figure on the right on desktop; narrow screens stack the content. RoboEdit-14M uses a three-page paired-video wall, while the decoder method block presents six looping decoded-state videos in a 2×3 layout. Detailed comparisons and ablations remain in the paper.
 - Videos: the final submission bundle. The main comparison galleries contain 24 RoboEdit cases × 4 streams and 8 real-robot cases × 1 stream, for 104 individual videos. Each real-robot case shows only the robot rollout.
 - The public-facing `3D Robot-State Decoder` description follows the paper-final Formal353 architecture: edited-RGB-only, shared ResNet-34 FPN, robot-specific spatial heads, SQPnP wrist recovery, full-81-frame temporal Transformer, and forward kinematics. V169 is not presented as the paper decoder.
 

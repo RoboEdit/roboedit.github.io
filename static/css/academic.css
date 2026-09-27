@@ -275,8 +275,9 @@ strong { color: inherit; }
 
 .adc-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: .9fr 1.1fr;
+  align-items: center;
+  gap: 42px;
 }
 .method-list { margin: 20px 0 0; padding: 0; list-style: none; }
 .method-list li { display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 10px 0; border-top: 1px solid var(--border); }
@@ -285,7 +286,6 @@ strong { color: inherit; }
 .method-list small { color: var(--muted); font-size: .86rem; }
 .adc-figure { width: 100%; margin: 0; }
 .adc-figure a { display: block; }
-.adc-content .method-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 
 .dataset-section, .gallery-section { color: var(--text); background: #fff; }
 .light-heading h2 { color: #111; }
@@ -486,7 +486,6 @@ strong { color: inherit; }
   .section-block { padding: 42px 0; }
   .abstract-copy { font-size: 1rem; text-align: left; }
   .adc-content, .ablation-panel { grid-template-columns: 1fr; gap: 24px; }
-  .adc-content .method-list { grid-template-columns: 1fr; gap: 0; }
   .dataset-video-carousel { aspect-ratio: 16 / 9; }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
   .deployment-grid, .real-robot-cases { grid-template-columns: 1fr; }
