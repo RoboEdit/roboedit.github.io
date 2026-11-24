@@ -1,6 +1,6 @@
 # RoboEdit project page
 
-Academic project page for **RoboEdit: Turning Human Manipulation Videos into Scalable Robot Experience**.
+Academic project page for **RoboEdit: Turning Human Videos into Scalable Robot Training Data**.
 
 ## Preview locally
 
@@ -22,7 +22,7 @@ Then open <http://127.0.0.1:8001/>.
 
 ## Publication status
 
-The title, author list, submission date, paper links, metadata, and BibTeX entry follow the public arXiv record for `2608.18948`. The page contains no anonymous-submission or AAAI venue label.
+The title, authors, and BibTeX entry follow the updated manuscript. Paper links point to `2608.18948`. The page contains no anonymous-submission or AAAI venue label.
 
 ## Media behavior
 
